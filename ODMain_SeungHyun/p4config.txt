@@ -1,0 +1,4 @@
+P4PORT=ssl:10.17.100.125:1666
+P4USER=SeungHyun
+P4CLIENT=ODMain_SeungHyun
+P4IGNORE=.p4ignore.txt;.gitignore
