@@ -1,23 +1,23 @@
 # ODIN: VALHALLA RISING - UI System Portfolio
 
-## 📑 목차 (Table of Contents)
+##  목차 (Table of Contents)
 
-- [📋 프로젝트 개요](#-프로젝트-개요)
+- [프로젝트 개요](#-프로젝트-개요)
   - [개발 동기 및 목표](#개발-동기-및-목표)
-- [🎯 주요 역할 및 성과](#-주요-역할-및-성과)
-- [🏗️ UI 시스템 아키텍처](#️-ui-시스템-아키텍처)
+- [주요 역할 및 성과](#-주요-역할-및-성과)
+- [UI 시스템 아키텍처](#️-ui-시스템-아키텍처)
   - [1. UI Subsystem](#1-ui-subsystem-oduisubsystem)
   - [2. 위젯 계층 구조](#2-위젯-계층-구조)
   - [3. 위젯 Stack Push 시스템](#3-위젯-stack-push-시스템)
   - [4. Confirmation & Message Screen 시스템](#4-confirmation--message-screen-시스템)
   - [5. Data Registry & List Management 시스템](#5-data-registry--list-management-시스템)
-- [💡 주요 구현 내용](#-주요-구현-내용)
+- [주요 구현 내용](#-주요-구현-내용)
   - [1. HUD 시스템](#1-hud-시스템-odwidget_hud)
   - [2. 스킬 시스템 UI](#2-스킬-시스템-ui-odwidget_skillscreen)
   - [3. 옵션 설정 UI](#3-옵션-설정-ui-odwidget_optionscreen)
   - [4. 데미지 텍스트 시스템](#4-데미지-텍스트-시스템)
   - [5. 공통 컴포넌트](#5-공통-컴포넌트)
-- [🎮 핵심 제작 UI 상세](#-핵심-제작-ui-상세)
+- [핵심 제작 UI 상세](#-핵심-제작-ui-상세)
   - [메인 화면](#메인-화면)
   - [캐릭터 선택](#캐릭터-선택)
   - [POPUP 메뉴](#popup-메뉴)
@@ -26,13 +26,12 @@
   - [데미지 POPUP](#데미지-popup)
   - [타겟팅](#타겟팅)
   - [스킬창 및 스킬슬롯](#스킬창-및-스킬슬롯)
-- [🔧 기술 스택 및 패턴](#-기술-스택-및-패턴)
-- [📊 성능 최적화](#-성능-최적화)
-- [🎨 UI/UX 특징](#-uiux-특징)
-- [📝 코드 구조](#-코드-구조)
-- [🚀 향후 개선 방향](#-향후-개선-방향)
-- [📚 학습 및 성장](#-학습-및-성장)
-- [📞 연락처](#-연락처)
+- [기술 스택 및 패턴](#-기술-스택-및-패턴)
+- [성능 최적화](#-성능-최적화)
+- [UI/UX 특징](#-uiux-특징)
+- [코드 구조](#-코드-구조)
+- [향후 개선 방향](#-향후-개선-방향)
+- [학습 및 성장](#-학습-및-성장)
 
 ---
 
@@ -72,7 +71,7 @@
 
 ---
 
-## 🎯 주요 역할 및 성과
+##  주요 역할 및 성과
 
 ### UI 아키텍처 설계
 - **CommonUI 프레임워크 기반** UI 시스템 구축
@@ -98,7 +97,7 @@
 
 ---
 
-## 🏗️ UI 시스템 아키텍처
+##  UI 시스템 아키텍처
 
 ### 1. UI Subsystem (ODUISubsystem)
 게임 인스턴스 레벨의 UI 관리 시스템
@@ -817,7 +816,7 @@ void OnListVieListDataModified(
 
 ---
 
-## 💡 주요 구현 내용
+##  주요 구현 내용
 
 ### 1. HUD 시스템 (ODWidget_HUD)
 
@@ -925,7 +924,8 @@ FUIActionBindingHandle ResetActionHandle;
 
 ### 사용 기술
 - **Unreal Engine 5.4**
-- **CommonUI Plugin**: Epic Games의 크로스플랫폼 UI 프레임워크
+- **Dedicated Server**: 게임플레이를 전담하는 서버 
+- **CommonUI Plugin**: 크로스플랫폼 UI 프레임워크
 - **UMG (Unreal Motion Graphics)**: UI 디자인 및 애니메이션
 - **Gameplay Ability System (GAS)**: 게임플레이 로직과 UI 연동
 - **Gameplay Tags**: UI 스택 및 상태 관리
@@ -939,12 +939,13 @@ FUIActionBindingHandle ResetActionHandle;
 
 ---
 
-## 📊 성능 최적화
+##  성능 최적화
 
 ### 메모리 관리
 - **비동기 위젯 로딩**: TSoftClassPtr 사용으로 초기 메모리 사용량 감소
 - **WeakObjectPtr 활용**: 순환 참조 방지 및 메모리 누수 차단
 - **오브젝트 풀링**: 빈번히 생성/파괴되는 위젯 재사용
+- **Atlas Image 활용**: AtlasImage를 UVSize로 개별 스프라이트를 저장해 사용
 
 ### 렌더링 최적화
 - **가상화된 리스트**: CommonListView로 대량 아이템 효율적 렌더링
@@ -953,7 +954,7 @@ FUIActionBindingHandle ResetActionHandle;
 
 ---
 
-## 🎨 UI/UX 특징
+## UI/UX 특징
 
 ### 사용자 경험
 - **직관적인 네비게이션**: 탭 기반 메뉴 구조
@@ -968,7 +969,7 @@ FUIActionBindingHandle ResetActionHandle;
 
 ---
 
-## 📝 코드 구조
+## 코드 구조
 
 ### 디렉토리 구조
 ```
@@ -1007,7 +1008,7 @@ Source/OD/
 
 ---
 
-## 🎮 핵심 제작 UI 상세
+##  핵심 제작 UI 상세
 
 이 섹션에서는 실제 구현한 UI들의 상세 내용과 구현 방식을 설명합니다.
 
@@ -1392,7 +1393,7 @@ void UODWidget_SkillHudActive::UpdateCooldown(float DeltaTime) {
 
 ---
 
-## 🚀 향후 개선 방향
+##  향후 개선 방향
 
 ### 계획된 기능
 - [ ] 인벤토리 시스템 UI
@@ -1408,7 +1409,7 @@ void UODWidget_SkillHudActive::UpdateCooldown(float DeltaTime) {
 
 ---
 
-## 📚 학습 및 성장
+## 학습 및 성장
 
 ### 습득한 기술
 - CommonUI 프레임워크의 깊이 있는 이해
@@ -1421,18 +1422,5 @@ void UODWidget_SkillHudActive::UpdateCooldown(float DeltaTime) {
 - **성능 최적화**: 오브젝트 풀링 및 비동기 로딩으로 프레임 드롭 해결
 - **크로스플랫폼 대응**: CommonUI를 활용한 다양한 입력 디바이스 지원
 
----
-
-## 📞 연락처
-
-- **GitHub**: [Your GitHub]
-- **Email**: [Your Email]
-- **Portfolio**: [Your Portfolio Website]
-
----
-
-## 📄 라이선스
-
-이 프로젝트는 포트폴리오 목적으로 작성되었습니다.
 
 
