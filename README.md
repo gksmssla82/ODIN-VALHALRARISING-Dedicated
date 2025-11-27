@@ -1025,6 +1025,7 @@ Source/OD/
 ---
 
 ### 캐릭터 선택
+![](./Resources/Image/캐릭터선택1.png)![](./Resources/Image/캐릭터선택2.png)
 
 #### 시스템 구조
 **Character Select Manager** (Actor 기반)를 맵에 배치하여 캐릭터 선택 프로세스를 관리합니다.
@@ -1058,6 +1059,7 @@ void ACharacterSelectManager::CreateCharacterByJob(EPlayerJob SelectedJob, const
 ---
 
 ### POPUP 메뉴
+![](./Resources/Image/POPUP1.png)![](./Resources/Image/POPUP2.png)
 
 #### 구현된 POPUP 종류
 
