@@ -35,7 +35,7 @@
 
 ---
 
-## 📋 프로젝트 개요
+##  프로젝트 개요
 
 **프로젝트명**: ODIN: VALHALLA RISING  
 **엔진**: Unreal Engine 5.4 (Dedicated Server)  
@@ -920,7 +920,7 @@ FUIActionBindingHandle ResetActionHandle;
 
 ---
 
-## 🔧 기술 스택 및 패턴
+##  기술 스택 및 패턴
 
 ### 사용 기술
 - **Unreal Engine 5.4**
