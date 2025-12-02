@@ -99,10 +99,10 @@ flowchart TD
     end
     
     CharSelect --> JobSel
-    NickInput --> Field
+    NickInput -- "데디케이티드 서버 진입<br/>(Dedicated Server Entry)" --> Field
 
-    %% 데디케이티드 서버 진입
-    Field -- "데디케이티드 서버 진입<br/>(Dedicated Server Entry)" --> Dungeon
+    %% 필드에서 던전으로
+    Field --> Dungeon
 
     %% 던전 진행 상세
     subgraph DungeonDetails ["던전 진행"]
