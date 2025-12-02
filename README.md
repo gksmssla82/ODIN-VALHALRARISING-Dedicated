@@ -4,6 +4,7 @@
 
 - [프로젝트 개요](#-프로젝트-개요)
   - [개발 동기 및 목표](#개발-동기-및-목표)
+  - [게임 진행 플로우](#-게임-진행-플로우)
 - [주요 역할 및 성과](#-주요-역할-및-성과)
 - [UI 시스템 아키텍처](#️-ui-시스템-아키텍처)
   - [1. UI Subsystem](#1-ui-subsystem-oduisubsystem)
@@ -67,8 +68,86 @@
 - **크로스 플랫폼 최적화**: Epic Games가 공식 지원하는 크로스 플랫폼 UI 프레임워크
 - **입력 추상화**: 다양한 입력 방식을 통합적으로 처리
 - **스택 관리**: 체계적인 UI 레이어 및 포커스 관리
-- **산업 표준**: Fortnite 등 대규모 프로젝트에서 검증된 솔루션
+- **산업 표준**: Fortnite 등 대규모 프로젝트에서 검증된 솔루션  
 
+
+---  
+##  게임 진행 플로우  
+
+##  게임 진행 플로우차트  
+
+```mermaid
+flowchart TD
+    %% 노드 정의
+    Intro["인트로 씬<br/>(Intro Scene)"]
+    Title["타이틀 맵<br/>(Title Map)"]
+    CharSelect["캐릭터 선택 맵<br/>(Character Selection Map)"]
+    Field["필드 맵<br/>(Field Map)"]
+    Dungeon["던전 맵<br/>(Dungeon Map)"]
+
+    %% 메인 플로우
+    Intro --> Title
+    Title --> CharSelect
+
+    %% 캐릭터 선택 상세
+    subgraph CharSelectDetails ["캐릭터 선택 프로세스"]
+        direction TB
+        JobSel["캐릭터/직업 선택<br/>(Job Selection)"]
+        IPInput["IP/포트 입력<br/>(IP/Port Input)"]
+        NickInput["닉네임 입력<br/>(Nickname Input)"]
+        
+        JobSel --> IPInput --> NickInput
+    end
+    
+    CharSelect --> JobSel
+    NickInput --> Field
+
+    %% 데디케이티드 서버 진입
+    Field -- "데디케이티드 서버 진입<br/>(Dedicated Server Entry)" --> Dungeon
+
+    %% 던전 진행 상세
+    subgraph DungeonDetails ["던전 진행"]
+        direction TB
+        Monsters["몬스터<br/>(Monsters)"]
+        MidBoss["중간 보스<br/>(Mid Boss)"]
+        Boss["최종 보스<br/>(Final Boss)"]
+        
+        Monsters --> MidBoss --> Boss
+    end
+    
+    Dungeon --> Monsters
+
+    %% 스타일링
+    classDef clientSide fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    classDef serverSide fill:#E24A4A,stroke:#8A2E2E,stroke-width:2px,color:#fff
+    classDef process fill:#50C878,stroke:#2E8A57,stroke-width:2px,color:#fff
+    
+    class Intro,Title,CharSelect clientSide
+    class Field,Dungeon serverSide
+    class JobSel,IPInput,NickInput,Monsters,MidBoss,Boss process
+```
+#### 게임 흐름 설명  
+**클라이언트 단독 실행 (파란색)**    
+1. **인트로 씬**  
+   - 라이선스 및 저작권 표시 연출    
+   - 선정성 및 경고 메세지 표시
+2. **타이틀 맵**  
+   - 메인 매뉴
+3. **캐릭터 선택 맵**
+   - 캐릭터/직업 선택
+   - 서버 IP/포트 입력
+   - 닉네임 입력
+
+**데디케이티드 서버 실행 (빨간색)**  
+1. **필드 맵**
+   - 데디케이티드 서버 시작전 캐릭터 선택맵에서 입력받은 직업 및 캐릭터이름 동기화
+   - 해당 직업으로 DefaultPawn 변경
+2. **던전 맵**
+   - 일반 몬스터 처치
+   - 엘리트 몬스터 처치
+   - 중간 보스 처치
+   - 보스 처치  
+     
 ---
 
 ##  주요 역할 및 성과
