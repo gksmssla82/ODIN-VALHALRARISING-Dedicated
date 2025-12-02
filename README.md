@@ -40,6 +40,7 @@
 
 **프로젝트명**: ODIN: VALHALLA RISING  
 **엔진**: Unreal Engine 5.4 (Dedicated Server)  
+**버전관리**: Perforce  
 **장르**: MMORPG  
 **담당 파트**: UI 시스템 / 기능 / 연출  
 **개발 기간**: [2025.09.01 ~ 2025.11.10]
