@@ -1,9 +1,9 @@
-# ODIN: VALHALLA RISING - UI System Portfolio
-
+# ODIN: VALHALLA RISING - UI System Portfolio  
+![](./Resources/Image/오딘메인.jpg)
 ##  목차 (Table of Contents)
 
 - [프로젝트 개요](#-프로젝트-개요)
-  - [개발 동기 및 목표](#개발-동기-및-목표)
+  - [개발 동기 및 목표](#개발-동기-및-목표)  
   - [게임 진행 플로우차트](#-게임-진행-플로우차트)
 - [주요 역할 및 성과](#-주요-역할-및-성과)
 - [UI 시스템 아키텍처](#️-ui-시스템-아키텍처)
@@ -64,14 +64,6 @@
    - PC와 모바일 환경 모두 지원
    - Epic Games의 **CommonUI 플러그인** 활용
    - 다양한 입력 디바이스(키보드, 마우스, 게임패드, 터치) 지원
-
-#### CommonUI 선택 이유
-- **크로스 플랫폼 최적화**: Epic Games가 공식 지원하는 크로스 플랫폼 UI 프레임워크
-- **입력 추상화**: 다양한 입력 방식을 통합적으로 처리
-- **스택 관리**: 체계적인 UI 레이어 및 포커스 관리
-- **산업 표준**: Fortnite 등 대규모 프로젝트에서 검증된 솔루션  
-
-
 ---  
 
 ##  게임 진행 플로우차트  
@@ -79,11 +71,11 @@
 ```mermaid
 flowchart TD
     %% 노드 정의
-    Intro["인트로 씬<br/>(Intro Scene)"]
-    Title["타이틀 맵<br/>(Title Map)"]
-    CharSelect["캐릭터 선택 맵<br/>(Character Selection Map)"]
-    Field["필드 맵<br/>(Field Map)"]
-    Dungeon["던전 맵<br/>(Dungeon Map)"]
+    Intro["인트로 씬"]
+    Title["타이틀 맵"]
+    CharSelect["캐릭터 선택 맵"]
+    Field["필드 맵"]
+    Dungeon["던전 맵"]
 
     %% 메인 플로우
     Intro --> Title
@@ -92,15 +84,15 @@ flowchart TD
     %% 캐릭터 선택 상세
     subgraph CharSelectDetails ["캐릭터 선택 프로세스"]
         direction TB
-        JobSel["캐릭터/직업 선택<br/>(Job Selection)"]
-        IPInput["IP/포트 입력<br/>(IP/Port Input)"]
-        NickInput["닉네임 입력<br/>(Nickname Input)"]
+        JobSel["캐릭터/직업 선택"]
+        IPInput["IP/포트 입력"]
+        NickInput["닉네임 입력"]
         
         JobSel --> IPInput --> NickInput
     end
     
     CharSelect --> JobSel
-    NickInput -- "데디케이티드 서버 진입<br/>(Dedicated Server Entry)" --> Field
+    NickInput -- "데디케이티드 서버 진입" --> Field
 
     %% 필드에서 던전으로
     Field --> Dungeon
@@ -108,9 +100,9 @@ flowchart TD
     %% 던전 진행 상세
     subgraph DungeonDetails ["던전 진행"]
         direction TB
-        Monsters["몬스터<br/>(Monsters)"]
-        MidBoss["중간 보스<br/>(Mid Boss)"]
-        Boss["최종 보스<br/>(Final Boss)"]
+        Monsters["몬스터"]
+        MidBoss["중간 보스"]
+        Boss["최종 보스"]
         
         Monsters --> MidBoss --> Boss
     end
@@ -173,6 +165,24 @@ flowchart TD
 - **List Data Object 분리**: UI와 데이터 독립성 확보
 - **비동기 로딩**: TSoftClassPtr 활용한 지연 로딩으로 초기 메모리 사용량 최소화
 - **크로스 플랫폼 입력**: PC/모바일 환경 모두 지원하는 통합 입력 시스템
+
+### 습득한 기술
+- CommonUI 프레임워크의 깊이 있는 이해
+- 대규모 UI 시스템 아키텍처 설계 경험
+- Gameplay Ability System과 UI 통합
+- 비동기 프로그래밍 및 메모리 관리
+
+### 해결한 과제
+- **메모리 관리**: 위젯 라이프사이클 최적화로 메모리 누수 방지
+- **성능 최적화**: 오브젝트 풀링 및 비동기 로딩으로 프레임 드롭 해결
+- **크로스플랫폼 대응**: CommonUI를 활용한 다양한 입력 디바이스 지원
+
+
+### CommonUI 선택 이유
+- **크로스 플랫폼 최적화**: Epic Games가 공식 지원하는 크로스 플랫폼 UI 프레임워크
+- **입력 추상화**: 다양한 입력 방식을 통합적으로 처리
+- **스택 관리**: 체계적인 UI 레이어 및 포커스 관리
+- **산업 표준**: Fortnite 등 대규모 프로젝트에서 검증된 솔루션  
 
 ---
 
@@ -999,94 +1009,6 @@ FUIActionBindingHandle ResetActionHandle;
 
 ---
 
-##  기술 스택 및 패턴
-
-### 사용 기술
-- **Unreal Engine 5.4**
-- **Dedicated Server**: 게임플레이를 전담하는 서버 
-- **CommonUI Plugin**: 크로스플랫폼 UI 프레임워크
-- **UMG (Unreal Motion Graphics)**: UI 디자인 및 애니메이션
-- **Gameplay Ability System (GAS)**: 게임플레이 로직과 UI 연동
-- **Gameplay Tags**: UI 스택 및 상태 관리
-
-### 디자인 패턴
-- **Subsystem Pattern**: 게임 인스턴스 레벨의 UI 관리
-- **Observer Pattern**: 데이터 변경 시 UI 자동 업데이트
-- **Object Pooling**: 데미지 텍스트 등 반복 생성 위젯 최적화
-- **Registry Pattern**: 스킬 및 옵션 데이터 중앙 관리
-- **Async Loading**: 비동기 위젯 로딩으로 로딩 시간 최소화
-
----
-
-##  성능 최적화
-
-### 메모리 관리
-- **비동기 위젯 로딩**: TSoftClassPtr 사용으로 초기 메모리 사용량 감소
-- **WeakObjectPtr 활용**: 순환 참조 방지 및 메모리 누수 차단
-- **오브젝트 풀링**: 빈번히 생성/파괴되는 위젯 재사용
-- **Atlas Image 활용**: AtlasImage를 UVSize로 개별 스프라이트를 저장해 사용
-
-### 렌더링 최적화
-- **가상화된 리스트**: CommonListView로 대량 아이템 효율적 렌더링
-- **위젯 바인딩**: 불필요한 Tick 이벤트 제거
-- **조건부 렌더링**: 비활성 위젯의 렌더링 비용 최소화
-
----
-
-## UI/UX 특징
-
-### 사용자 경험
-- **직관적인 네비게이션**: 탭 기반 메뉴 구조
-- **즉각적인 피드백**: 버튼 클릭, 호버 효과
-- **명확한 정보 전달**: 아이콘, 색상, 애니메이션 활용
-- **접근성 고려**: 키보드/게임패드 지원 (CommonUI)
-
-### 비주얼 디자인
-- **일관된 디자인 시스템**: 공통 컴포넌트 활용
-- **애니메이션 효과**: 레벨업, 스킬 해금 등 주요 이벤트
-- **색상 코딩**: HP(빨강), MP(파랑), EXP(노랑) 등 직관적 색상
-
----
-
-## 코드 구조
-
-### 디렉토리 구조
-```
-Source/OD/
-├── Public/
-│   ├── Subsystem/
-│   │   └── ODUISubsystem.h
-│   ├── Widgets/
-│   │   ├── ODWidget_Activatable.h (베이스 클래스)
-│   │   ├── ODWidget_PrimaryLayout.h
-│   │   ├── HUD/
-│   │   │   ├── ODWidget_HUD.h
-│   │   │   ├── ODWidget_LevelUp.h
-│   │   │   └── UserInput/
-│   │   ├── Skills/
-│   │   │   ├── ODWidget_SkillScreen.h
-│   │   │   ├── ODWidget_SkillsDetailsView.h
-│   │   │   ├── ListEntries/
-│   │   │   └── Slots/
-│   │   ├── Options/
-│   │   │   ├── ODWidget_OptionScreen.h
-│   │   │   └── ListEntries/
-│   │   ├── Component/
-│   │   │   ├── ODCommonTabListWidgetBase.h
-│   │   │   ├── ODCommonListView.h
-│   │   │   └── ODCommonButtonBase.h
-│   │   └── NoneStackWidget/
-│   │       ├── ODWidget_DamageQueContainer.h
-│   │       ├── ODWidget_DamageText.h
-│   │       └── ODWidget_Target.h
-│   └── Enum/
-│       └── ODUIEnumTypes.h
-└── Private/
-    └── (구현 파일들)
-```
-
----
-
 ##  핵심 제작 UI 상세
 
 이 섹션에서는 실제 구현한 UI들의 상세 내용과 구현 방식을 설명합니다.
@@ -1487,8 +1409,95 @@ void UODWidget_SkillHudActive::UpdateCooldown(float DeltaTime) {
 }
 ```
 
+---  
+
+  ##  기술 스택 및 패턴
+
+### 사용 기술
+- **Unreal Engine 5.4**
+- **Dedicated Server**: 게임플레이를 전담하는 서버 
+- **CommonUI Plugin**: 크로스플랫폼 UI 프레임워크
+- **UMG (Unreal Motion Graphics)**: UI 디자인 및 애니메이션
+- **Gameplay Ability System (GAS)**: 게임플레이 로직과 UI 연동
+- **Gameplay Tags**: UI 스택 및 상태 관리
+
+### 디자인 패턴
+- **Subsystem Pattern**: 게임 인스턴스 레벨의 UI 관리
+- **Observer Pattern**: 데이터 변경 시 UI 자동 업데이트
+- **Object Pooling**: 데미지 텍스트 등 반복 생성 위젯 최적화
+- **Registry Pattern**: 스킬 및 옵션 데이터 중앙 관리
+- **Async Loading**: 비동기 위젯 로딩으로 로딩 시간 최소화
+
 ---
 
+##  성능 최적화
+
+### 메모리 관리
+- **비동기 위젯 로딩**: TSoftClassPtr 사용으로 초기 메모리 사용량 감소
+- **WeakObjectPtr 활용**: 순환 참조 방지 및 메모리 누수 차단
+- **오브젝트 풀링**: 빈번히 생성/파괴되는 위젯 재사용
+- **Atlas Image 활용**: AtlasImage를 UVSize로 개별 스프라이트를 저장해 사용
+
+### 렌더링 최적화
+- **가상화된 리스트**: CommonListView로 대량 아이템 효율적 렌더링
+- **위젯 바인딩**: 불필요한 Tick 이벤트 제거
+- **조건부 렌더링**: 비활성 위젯의 렌더링 비용 최소화
+
+---
+
+## UI/UX 특징
+
+### 사용자 경험
+- **직관적인 네비게이션**: 탭 기반 메뉴 구조
+- **즉각적인 피드백**: 버튼 클릭, 호버 효과
+- **명확한 정보 전달**: 아이콘, 색상, 애니메이션 활용
+- **접근성 고려**: 키보드/게임패드 지원 (CommonUI)
+
+### 비주얼 디자인
+- **일관된 디자인 시스템**: 공통 컴포넌트 활용
+- **애니메이션 효과**: 레벨업, 스킬 해금 등 주요 이벤트
+- **색상 코딩**: HP(빨강), MP(파랑), EXP(노랑) 등 직관적 색상
+
+---
+
+## 코드 구조
+
+### 디렉토리 구조
+```
+Source/OD/
+├── Public/
+│   ├── Subsystem/
+│   │   └── ODUISubsystem.h
+│   ├── Widgets/
+│   │   ├── ODWidget_Activatable.h (베이스 클래스)
+│   │   ├── ODWidget_PrimaryLayout.h
+│   │   ├── HUD/
+│   │   │   ├── ODWidget_HUD.h
+│   │   │   ├── ODWidget_LevelUp.h
+│   │   │   └── UserInput/
+│   │   ├── Skills/
+│   │   │   ├── ODWidget_SkillScreen.h
+│   │   │   ├── ODWidget_SkillsDetailsView.h
+│   │   │   ├── ListEntries/
+│   │   │   └── Slots/
+│   │   ├── Options/
+│   │   │   ├── ODWidget_OptionScreen.h
+│   │   │   └── ListEntries/
+│   │   ├── Component/
+│   │   │   ├── ODCommonTabListWidgetBase.h
+│   │   │   ├── ODCommonListView.h
+│   │   │   └── ODCommonButtonBase.h
+│   │   └── NoneStackWidget/
+│   │       ├── ODWidget_DamageQueContainer.h
+│   │       ├── ODWidget_DamageText.h
+│   │       └── ODWidget_Target.h
+│   └── Enum/
+│       └── ODUIEnumTypes.h
+└── Private/
+    └── (구현 파일들)
+```
+
+---
 ##  향후 개선 방향
 
 ### 계획된 기능
@@ -1504,19 +1513,5 @@ void UODWidget_SkillHudActive::UpdateCooldown(float DeltaTime) {
 - [ ] 렌더링 배치 최적화
 
 ---
-
-## 학습 및 성장
-
-### 습득한 기술
-- CommonUI 프레임워크의 깊이 있는 이해
-- 대규모 UI 시스템 아키텍처 설계 경험
-- Gameplay Ability System과 UI 통합
-- 비동기 프로그래밍 및 메모리 관리
-
-### 해결한 과제
-- **메모리 관리**: 위젯 라이프사이클 최적화로 메모리 누수 방지
-- **성능 최적화**: 오브젝트 풀링 및 비동기 로딩으로 프레임 드롭 해결
-- **크로스플랫폼 대응**: CommonUI를 활용한 다양한 입력 디바이스 지원
-
 
 
