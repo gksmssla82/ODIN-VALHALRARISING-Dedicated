@@ -1104,7 +1104,7 @@ Source/OD/
 ---
 
 ### 캐릭터 선택
-![](./Resources/Image/캐릭터선택1.png)![](./Resources/Image/캐릭터선택2.png)
+![](./Resources/Image/캐릭터선택.gif)  
 
 #### 시스템 구조
 **Character Select Manager** (Actor 기반)를 맵에 배치하여 캐릭터 선택 프로세스를 관리합니다.
@@ -1211,7 +1211,8 @@ void UODWidget_Hud_UserInput::BindInputActions() {
 }
 ```
 
-#### AUTO 버튼 특수 처리
+#### AUTO 버튼 특수 처리  
+![](./Resources/Image/Auto.gif)
 - **키보드로 활성화** → 버튼 클릭으로 비활성화 가능
 - **버튼으로 활성화** → 키보드로 비활성화 가능
 - 양방향 입력 모두 지원하여 사용자 편의성 극대화
@@ -1258,7 +1259,7 @@ class UODGameUserSettings : public UGameUserSettings {
 ---
 
 ### 데미지 POPUP
-![](./Resources/Image/Damage.png)
+![](./Resources/Image/데미지팝업.gif)  
 
 #### ASC(Ability System Component) 바인딩
 
